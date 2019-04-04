@@ -1,6 +1,6 @@
 # Assignment1
 ### Class Assignment 
-### Multithreading sort 
+### Multithreading sort, with generic merge sort and extends runnable  
 
 
 
