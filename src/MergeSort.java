@@ -12,10 +12,27 @@ public class MergeSort<AnyType extends Comparable<? super AnyType>> implements R
     }
     @Override
     public void run(){
+        sort((Integer[]) msArray, 0, msArray.length-1);
+    }
+    void sort(Integer arr[], Integer left, Integer right)
+    {
+        if (left < right)
+        {
+            // Find the middle point
+            int mid = (left+right)/2;
 
+            // Sort first and second halves
+            sort(arr, left, mid);
+            sort(arr , mid+1, right);
+
+            // Merge the sorted halves
+            merge(arr, left, mid, right);
+        }
     }
 
     public void merge(Integer arr[], Integer left, Integer mid, Integer right){
+        arr = (Integer[]) msArray;
+
         int n1 = mid - left + 1;
         int n2 = right - mid;
 
@@ -61,20 +78,6 @@ public class MergeSort<AnyType extends Comparable<? super AnyType>> implements R
         }
 
     }
-    void sort(Integer arr[], Integer left, Integer right)
-    {
-        if (left < right)
-        {
-            // Find the middle point
-            int mid = (left+right)/2;
 
-            // Sort first and second halves
-            sort(arr, left, mid);
-            sort(arr , mid+1, right);
-
-            // Merge the sorted halves
-            merge(arr, left, mid, right);
-        }
-    }
 
 }

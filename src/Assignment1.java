@@ -6,6 +6,7 @@ public class Assignment1 {
         int max = 100000;
         int min = 1;
         int range = max - min + 1;
+
         for(int i = 0; i < randNum.length; i++){
             int rand = (int)(Math.random() * range) + min;
             randNum[i] = rand;
