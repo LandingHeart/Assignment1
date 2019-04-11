@@ -16,16 +16,19 @@ public class Assignment1 {
         for(int i = 0; i < randNum.length; i++){
             System.out.println(i + " " + randNum[i]);
         }
-        MergeSort<Integer> ms = new MergeSort<Integer>(randNum);
-        MergeSort[] mstThread = new MergeSort[100];
 
-        for(int i = 0; i < randNum.length; i++){
-            mstThread[i] = new MergeSort(randNum);//created the object
-//
-//            mstThread[i].start();//
-//            mstThread[i].join();
 
+        try {
+            MergeSort<Integer> ms = new MergeSort<>(randNum);
+            ms.start();
+            ms.join();
+            for (Integer i: randNum) {
+                System.out.println("i = " + i);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
 
     }
 }

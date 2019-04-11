@@ -1,83 +1,91 @@
-public class MergeSort<AnyType extends Comparable<? super AnyType>> implements Runnable{
+import com.sun.javafx.tools.ant.AntLog;
+import org.omg.CORBA.Any;
+
+import java.awt.*;
+
+public class MergeSort<AnyType extends Comparable<? super AnyType>> extends Thread{
 
     AnyType[] msArray;
 
     public MergeSort(AnyType[] array){
 
         msArray = array;
+
     }
 
-    public AnyType[] getArr() {
-        return msArray;
+
+    public void mergeSort()
+    {
+         if (msArray.length  < 2) return;
+
+         int middle =  msArray.length / 2;
+         AnyType[]left = (AnyType[]) new Comparable[middle];
+         AnyType[]right = (AnyType[]) new Comparable[msArray.length - middle];
+
+         System.arraycopy(msArray, 0, left, 0, middle);
+         System.arraycopy(msArray, middle, right, 0, msArray.length - middle);
+
+         MergeSort<AnyType> firstHalf = new MergeSort<>(left);
+         MergeSort<AnyType> secondHalf = new MergeSort<>(right);
+         firstHalf.start();
+         secondHalf.start();
+
+        try {
+            firstHalf.join();
+            secondHalf.join();
+            merge(left, right);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
+
+    public void merge(AnyType[] left, AnyType[] right) {
+          int leftSize =0;
+          int rightSize = 0;
+          int totalSize = 0;
+
+          while (leftSize < left.length && rightSize < right.length){
+                if (left[leftSize].compareTo(right[rightSize]) < 0){
+                    msArray[totalSize] = left[leftSize];
+
+                    leftSize++;
+                }else{
+                    msArray[totalSize] = right[rightSize];
+                    rightSize++;
+                }
+                totalSize++;
+          }
+
+
+          while (leftSize < left.length){
+              msArray[totalSize] = left[leftSize];
+              totalSize++;
+              leftSize++;
+          }
+
+          while (rightSize < right.length){
+              msArray[totalSize] = right[rightSize];
+              totalSize++;
+              rightSize++;
+          }
+
+
+
+    }
+
+
+    public void print(){
+        for(int i = 0; i < msArray.length; i++) {
+            System.out.println(msArray[i].toString());
+        }
+    }
+
     @Override
     public void run(){
-        sort((Integer[]) msArray, 0, msArray.length-1);
-    }
-    void sort(Integer arr[], Integer left, Integer right)
-    {
-        if (left < right)
-        {
-            // Find the middle point
-            int mid = (left+right)/2;
 
-            // Sort first and second halves
-            sort(arr, left, mid);
-            sort(arr , mid+1, right);
-
-            // Merge the sorted halves
-            merge(arr, left, mid, right);
-        }
-    }
-
-    public void merge(Integer arr[], Integer left, Integer mid, Integer right){
-        arr = (Integer[]) msArray;
-
-        int n1 = mid - left + 1;
-        int n2 = right - mid;
-
-        Integer[] Left = (Integer[]) new Object[n1];
-        Integer[] Right = (Integer[]) new Object[n2];
-
-        for (int i=0; i<n1; ++i)
-            Left[i] = arr[left + i];
-
-        for (int j=0; j<n2; ++j)
-            Right[j] = arr[mid + 1+ j];
-
-        int i = 0, j = 0;
-
-        int k = left;
-        while (i < n1 && j < n2)
-        {
-            if (Left[i] <= Right[j])
-            {
-                arr[k] = Left[i];
-                i++;
-            }
-            else
-            {
-                arr[k] = Right[j];
-                j++;
-            }
-            k++;
-        }
-        while (i < n1)
-        {
-            arr[k] = Left[i];
-            i++;
-            k++;
-        }
-
-        /* Copy remaining elements of R[] if any */
-        while (j < n2)
-        {
-            arr[k] = Right[j];
-            j++;
-            k++;
-        }
+     mergeSort();
 
     }
-
 
 }
