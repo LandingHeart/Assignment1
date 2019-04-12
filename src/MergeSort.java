@@ -1,7 +1,3 @@
-import com.sun.javafx.tools.ant.AntLog;
-import org.omg.CORBA.Any;
-
-import java.awt.*;
 
 public class MergeSort<AnyType extends Comparable<? super AnyType>> extends Thread{
 
