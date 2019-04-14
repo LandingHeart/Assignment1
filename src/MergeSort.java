@@ -1,25 +1,21 @@
-
 public class MergeSort<AnyType extends Comparable<? super AnyType>> extends Thread{
 
-    AnyType[] msArray;
+    private AnyType[] threadArray;
 
     public MergeSort(AnyType[] array){
-
-        msArray = array;
-
+        threadArray = array;
     }
-
 
     public void mergeSort()
     {
-         if (msArray.length  < 2) return;
+         if (threadArray.length  < 2) return;
 
-         int middle =  msArray.length / 2;
-         AnyType[]left = (AnyType[]) new Comparable[middle];
-         AnyType[]right = (AnyType[]) new Comparable[msArray.length - middle];
+         int mid =  threadArray.length / 2;
+         AnyType[]left = (AnyType[]) new Comparable[mid];
+         AnyType[]right = (AnyType[]) new Comparable[threadArray.length - mid];
 
-         System.arraycopy(msArray, 0, left, 0, middle);
-         System.arraycopy(msArray, middle, right, 0, msArray.length - middle);
+         System.arraycopy(threadArray, 0, left, 0, mid);
+         System.arraycopy(threadArray, mid, right, 0, threadArray.length - mid);
 
          MergeSort<AnyType> firstHalf = new MergeSort<>(left);
          MergeSort<AnyType> secondHalf = new MergeSort<>(right);
@@ -37,43 +33,37 @@ public class MergeSort<AnyType extends Comparable<? super AnyType>> extends Thre
     }
 
     public void merge(AnyType[] left, AnyType[] right) {
-          int leftSize =0;
-          int rightSize = 0;
-          int totalSize = 0;
+          int lSide =0;
+          int rSide = 0;
+          int total = 0;
 
-          while (leftSize < left.length && rightSize < right.length){
-                if (left[leftSize].compareTo(right[rightSize]) < 0){
-                    msArray[totalSize] = left[leftSize];
+          while (lSide < left.length && rSide < right.length){
+                if (left[lSide].compareTo(right[rSide]) < 0){
+                    threadArray[total] = left[lSide++];
 
-                    leftSize++;
+
                 }else{
-                    msArray[totalSize] = right[rightSize];
-                    rightSize++;
+                    threadArray[total] = right[rSide++];
+
                 }
-                totalSize++;
+                total++;
           }
 
 
-          while (leftSize < left.length){
-              msArray[totalSize] = left[leftSize];
-              totalSize++;
-              leftSize++;
+          while (lSide < left.length){
+              threadArray[total++] = left[lSide++];
+
           }
 
-          while (rightSize < right.length){
-              msArray[totalSize] = right[rightSize];
-              totalSize++;
-              rightSize++;
+          while (rSide < right.length){
+              threadArray[total++] = right[rSide++];
+
           }
-
-
-
     }
 
-
     public void print(){
-        for(int i = 0; i < msArray.length; i++) {
-            System.out.println(msArray[i].toString());
+        for(int i = 0; i < threadArray.length; i++) {
+            System.out.print(threadArray[i].toString() + " ");
         }
     }
 
