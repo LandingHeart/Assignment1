@@ -12,7 +12,7 @@ public class Assignment1 {
             int rand = (int)(Math.random() * range) + min;
             randNum[i] = rand;
         }
-
+    
         for(int i = 0; i < randNum.length; i++){
             System.out.println(i + " --- " + randNum[i]);
         }
