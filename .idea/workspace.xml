@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a33c4d0-2499-46d3-96aa-5cf7b19c818b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/MergeSort.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/MergeSort.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MergeSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MergeSort.java" afterDir="false" />
-    </list>
+    <list default="true" id="6a33c4d0-2499-46d3-96aa-5cf7b19c818b" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,8 +62,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MergeSort.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1178">
-              <caret line="62" selection-start-line="62" selection-end-line="62" />
+            <state relative-caret-position="285">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
               <folding>
                 <element signature="e#158#159#0" expanded="true" />
                 <element signature="e#193#194#0" expanded="true" />
@@ -234,8 +230,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MergeSort.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1178">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        <state relative-caret-position="285">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
           <folding>
             <element signature="e#158#159#0" expanded="true" />
             <element signature="e#193#194#0" expanded="true" />
