@@ -6,19 +6,31 @@ public class MergeSort<AnyType extends Comparable<? super AnyType>> extends Thre
         threadArray = array;
     }
 
+    public AnyType[] splitArrayRight(){
+        int mid =  threadArray.length / 2;
+        AnyType[]right = (AnyType[]) new Comparable[threadArray.length - mid];
+        System.arraycopy(threadArray, mid, right, 0, threadArray.length - mid);
+        return right;
+
+    }
+
+    public AnyType[] splitArrayLeft(){
+        int mid =  threadArray.length / 2;
+        AnyType[]left = (AnyType[]) new Comparable[mid];
+        System.arraycopy(threadArray, 0, left, 0, mid);
+        return left;
+    }
+
     public void mergeSort()
     {
          if (threadArray.length  < 2) return;
 
-         int mid =  threadArray.length / 2;
-         AnyType[]left = (AnyType[]) new Comparable[mid];
-         AnyType[]right = (AnyType[]) new Comparable[threadArray.length - mid];
-
-         System.arraycopy(threadArray, 0, left, 0, mid);
-         System.arraycopy(threadArray, mid, right, 0, threadArray.length - mid);
+         AnyType[]left = splitArrayLeft();
+         AnyType[]right = splitArrayRight();
 
          MergeSort<AnyType> firstHalf = new MergeSort<>(left);
          MergeSort<AnyType> secondHalf = new MergeSort<>(right);
+
          firstHalf.start();
          secondHalf.start();
 
@@ -33,7 +45,7 @@ public class MergeSort<AnyType extends Comparable<? super AnyType>> extends Thre
     }
 
     public void merge(AnyType[] left, AnyType[] right) {
-          int lSide =0;
+          int lSide = 0;
           int rSide = 0;
           int total = 0;
 
